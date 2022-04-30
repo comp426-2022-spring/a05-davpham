@@ -8,7 +8,7 @@ const morgan = require('morgan')
 
 const fs = require('fs')
 
-const db = require('./database.js') 
+const db = require('./src/services/database.js') 
 
 args['port']
 const port = args.port || 5555
@@ -42,6 +42,11 @@ if (args.help || args.h) {
 
 app.use(express.urlencoded( {extended: true} ))
 app.use(express.json())
+
+// Add cors dependency
+const cors = require('cors')
+// Set up cors middleware on all endpoints
+app.use(cors())
 
 // Middleware
 app.use((req, res, next) => {
